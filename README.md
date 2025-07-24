@@ -92,13 +92,14 @@ The server listens on **`http://localhost:3000`** by default.
 
 ## API Endpoints
 
-| Method | Path         | Description                   |
-| ------ | ------------ | ----------------------------- |
-| GET    | `/task`      | Retrieve all tasks            |
-| GET    | `/task/{id}` | Retrieve a single task by ID  |
-| POST   | `/task`      | Create a new task             |
-| PUT    | `/task/{id}` | Update an existing task by ID |
-| DELETE | `/task/{id}` | Delete a task by ID           |
+| Method      | Path         | Description                   |
+| ------      | ------------ | ----------------------------- |
+| api-docs    | `/api-docs`  | Swagger API documentation     |
+| GET         | `/task`      | Retrieve all tasks            |
+| GET         | `/task/{id}` | Retrieve a single task by ID  |
+| POST        | `/task`      | Create a new task             |
+| PUT         | `/task/{id}` | Update an existing task by ID |
+| DELETE      | `/task/{id}` | Delete a task by ID           |
 
 **Request/Response JSON**
 
