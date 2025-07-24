@@ -1,0 +1,164 @@
+openapi: 3.0.3
+info:
+  title: Todo API
+  description: CRUD operations for task management
+  version: 1.0.0
+servers:
+  - url: http://localhost:3000
+    description: Local development server
+paths:
+  /task:
+    get:
+      summary: Retrieve all tasks
+      responses:
+        '200':
+          description: List of tasks retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Todos fetched successfully
+                  todos:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Task'
+    post:
+      summary: Create a new task
+      requestBody:
+        description: Task payload
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [title, description, status]
+              properties:
+                title:
+                  type: string
+                description:
+                  type: string
+                status:
+                  type: string
+                  enum: [PENDING, IN_PROGRESS, COMPLETED]
+      responses:
+        '201':
+          description: Task created successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Todo created
+                  todo:
+                    $ref: '#/components/schemas/Task'
+        '400':
+          description: Bad request (missing or invalid fields)
+        '500':
+          description: Internal server error
+  /task/{id}:
+    parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: string
+          format: uuid
+        description: UUID of the task
+    get:
+      summary: Retrieve a task by its ID
+      responses:
+        '200':
+          description: Task retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Todo fetched successfully
+                  todo:
+                    $ref: '#/components/schemas/Task'
+        '404':
+          description: Task not found
+        '500':
+          description: Internal server error
+    put:
+      summary: Update a task by its ID
+      requestBody:
+        description: Fields to update
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                description:
+                  type: string
+                status:
+                  type: string
+                  enum: [PENDING, IN_PROGRESS, COMPLETED]
+      responses:
+        '200':
+          description: Task updated successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Task updated successfully
+                  todo:
+                    $ref: '#/components/schemas/Task'
+        '400':
+          description: Nothing to update or invalid data
+        '404':
+          description: Task not found
+        '500':
+          description: Internal server error
+    delete:
+      summary: Delete a task by its ID
+      responses:
+        '200':
+          description: Task deleted successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Task deleted successfully
+        '404':
+          description: Task not found
+        '500':
+          description: Internal server error
+components:
+  schemas:
+    Task:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        title:
+          type: string
+        description:
+          type: string
+        status:
+          type: string
+          enum: [PENDING, IN_PROGRESS, COMPLETED]
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
