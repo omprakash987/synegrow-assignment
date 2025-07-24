@@ -19,8 +19,6 @@ A simple CRUD API for managing **Todo** tasks, built with:
 6. [API Endpoints](#api-endpoints)
 7. [Swagger / OpenAPI Documentation](#swagger--openapi-documentation)
 8. [Folder Structure](#folder-structure)
-9. [Contributing](#contributing)
-10. [License](#license)
 
 ---
 
@@ -41,8 +39,8 @@ This backend service exposes RESTful endpoints to create, read, update, and dele
 1. **Clone the repository**
 
    ```bash
-   git clone <repo-url> todo-backend
-   cd todo-backend
+   git clone https://github.com/omprakash987/synegrow-assignment.git
+   cd synegrow-assignment
    ```
 2. **Install dependencies**
 
@@ -57,7 +55,7 @@ This backend service exposes RESTful endpoints to create, read, update, and dele
    DB_PORT=3306
    DB_USER=root
    DB_PASS=your_password
-   DB_NAME=todo_app
+   DB_NAME=yout_db_name
    ```
 4. **Initialize the database**
    Log into MySQL and run:
@@ -147,6 +145,7 @@ backend/
 │   ├── controllers/     # Request handlers
 │   ├── models/          # Sequelize model definitions
 │   ├── routes/          # Express route definitions
+│   ├── validator/       # zod validation
 │   ├── lib/ConnectToDB.ts  # DB connection logic
 │   └── openapi.yaml     # OpenAPI specification
 ├── .env                 # Environment variables
@@ -154,19 +153,3 @@ backend/
 ├── tsconfig.json
 └── README.md            # This file
 ```
-
----
-
-## Contributing
-
-1. Fork the repo
-2. Create a branch: `git checkout -b feature/your-feature`
-3. Commit changes: `git commit -m "Add your feature"`
-4. Push to origin: `git push origin feature/your-feature`
-5. Open a Pull Request
-
----
-
-## License
-
-This project is licensed under the **MIT License**. Feel free to use, modify, and distribute.
